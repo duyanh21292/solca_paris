@@ -1,0 +1,1 @@
+<?php include 'column1.php'; ?>

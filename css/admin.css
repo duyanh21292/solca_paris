@@ -1,0 +1,153 @@
+/*
+    Document   : TABcss
+    Created on : Nov 13, 2013, 8:23:39 PM
+    Author     : DUYANH
+    Description:
+        Purpose of the stylesheet follows.
+*/
+@font-face{
+    font-family: 'pms-font-regular';
+    src: url(font/OpenSans-Regular.ttf);
+}
+
+@font-face{
+    font-family: 'pms-font-semibold';
+    src: url(font/OpenSans-Semibold.ttf);
+}
+@font-face{
+    font-family: 'pms-font-title';
+    src: url(font/Dense-Regular.otf);
+}
+
+@font-face{
+    font-family: 'pms-font-bold';
+    src: url(font/OpenSans-Bold.ttf);
+}
+
+*{
+    margin: 0;
+    /*font-size: small;*/
+    font-family: pms-font-regular,Arial,sans-serif;
+    box-shadow: none;
+}
+
+input[disabled] {
+    cursor: text;
+}
+
+div.admin_nav{
+
+}
+
+div.admin_list_categories table{
+    width: 100%;
+    margin-top: 5px;
+}
+div.admin_list_categories th{
+    font-family: pms-font-bold;
+    background-color: #E3E3E3;
+}
+div.admin_list_categories th.list_col_id{
+    width: 30px;
+}
+div.admin_list_categories th.list_col_name{
+    width: 200px;
+}
+
+div.admin_list_categories th.list_col_desc{
+    width: 400px;
+}
+div.admin_list_categories th.list_col_tools{
+    width: 60px;
+}
+div.admin_list_categories td{
+    padding: 5px;
+}
+div.admin_nav_item{
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid;
+    border-bottom: 0px;
+    background-color: #688197;
+    color: #fff;
+    padding-top: 20px;
+}
+div.admin_nav_item.current_item{
+    font-family: pms-font-bold;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+div.admin_content{
+    width: 100%;
+    height: auto;
+    border-top: 1px solid;
+}
+
+div.admin_list_categories,
+div.wrapper_form{
+    padding: 10px;
+}
+
+div.admin_list_title{
+    font-size: 20px;
+    font-family: pms-font-bold;
+}
+
+div.admin_bt_create_new{
+    /* height: 30px; */
+    background-color: #956c7a;
+    margin-left: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #fff;
+    font-family: pms-font-semibold;
+}
+div.admin_list_title,
+div.admin_bt_create_new{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.cell_category_content{
+    max-height: 400px;
+    overflow-x: auto;
+}
+div.wrapper_form form{
+    margin-top: 10px;
+}
+
+div.wrapper_form form input[type="text"]{
+    width: 600px;
+}
+
+div.wrapper_form form textarea{
+    width: 600px;
+    height: 200px;
+}
+
+div.go_to{
+    color: #0AA0BB;
+    cursor: pointer;
+}
+
+div.go_to span{
+    font-size: small;
+    text-decoration: underline;
+    font-family: pms-font-semibold;
+}
+
+div.go_to_icon{
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+div.category_img {
+    width: 200px;
+    height: 100px;
+    background: no-repeat center center;
+    background-size: cover;
+}

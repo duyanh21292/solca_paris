@@ -1,0 +1,64 @@
+CREATE TABLE `brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `filter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `img_url` longtext NOT NULL,
+  `type` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `information` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` mediumtext NOT NULL,
+  `type` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `icon_url` text,
+  `order` int(11) DEFAULT '1',
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` double DEFAULT '0',
+  `description` text,
+  `rating` int(11) DEFAULT '5',
+  `rating_num` int(11) DEFAULT '0',
+  `create_date` date NOT NULL,
+  `capacity` int(11) DEFAULT '0',
+  `weight` int(11) DEFAULT '0',
+  `menu_id` int(11) DEFAULT NULL,
+  `brand_id` int(11) DEFAULT NULL,
+  `pack_id` int(11) DEFAULT NULL,
+  `color_id` int(11) DEFAULT NULL,
+  `skin_id` int(11) DEFAULT NULL,
+  `smelling_id` int(11) DEFAULT NULL,
+  `material_id` int(11) DEFAULT NULL,
+  `suite_id` int(11) DEFAULT NULL,
+  `special` bit(1) DEFAULT b'0',
+  `img_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `menu_with_parent` AS select `sub_menu`.`id` AS `id`,`sub_menu`.`name` AS `name`,`sub_menu`.`description` AS `description`,`sub_menu`.`icon_url` AS `icon_url`,`sub_menu`.`order` AS `order`,`sub_menu`.`parent_id` AS `parent_id`,`menu`.`name` AS `parent_name` from (`menu` `sub_menu` left join `menu` on((`sub_menu`.`parent_id` = `menu`.`id`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `product_detail` AS select `product`.`id` AS `id`,`product`.`code` AS `code`,`product`.`name` AS `name`,`product`.`price` AS `price`,`product`.`description` AS `description`,`product`.`rating` AS `rating`,`product`.`create_date` AS `create_date`,`product`.`capacity` AS `capacity`,`product`.`weight` AS `weight`,`product`.`menu_id` AS `menu_id`,`product`.`brand_id` AS `brand_id`,`product`.`pack_id` AS `pack_id`,`product`.`color_id` AS `color_id`,`product`.`skin_id` AS `skin_id`,`product`.`smelling_id` AS `smelling_id`,`product`.`material_id` AS `material_id`,`product`.`suite_id` AS `suite_id`,`product`.`special` AS `special`,`product`.`img_id` AS `img_id`,`gallery`.`img_url` AS `img_url`,`brand`.`name` AS `brand_name` from ((`product` left join `gallery` on((`product`.`img_id` = `gallery`.`id`))) left join `brand` on((`product`.`brand_id` = `brand`.`id`)));
