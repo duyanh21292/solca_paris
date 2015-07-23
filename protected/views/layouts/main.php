@@ -13,8 +13,8 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
 	<div class="wrapper_site">
         <div class="admin_nav">
-            <a href="/Categories/categoriesManagement"><div id="categories_mng" class="admin_nav_item">Quản lý danh mục</div></a>
-            <div id="career_mng" class="admin_nav_item">Quản lý tuyển dụng</div>
+            <a href="/Menu/menuManagement"><div id="categories_mng" class="admin_nav_item">Quản lý danh mục</div></a>
+            <div id="product_mng" class="admin_nav_item">Quản lý sản phẩm</div>
             <a href="/Information/informationsManagement"><div id="info_mng" class="admin_nav_item">Quản lý thông tin</div></a>
             <a href="/Gallery/slideManagement"><div id="slide_mng" class="admin_nav_item">Quản lý Slide ảnh</div></a>
         </div>

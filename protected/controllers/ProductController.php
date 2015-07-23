@@ -184,7 +184,6 @@ class ProductController extends Controller
         $smelling_id = Yii::app()->request->getParam("smelling");
         $material_id = Yii::app()->request->getParam("material");
         $pack_id = Yii::app()->request->getParam("pack");
-        $suite_id = Yii::app()->request->getParam("suite");
         $sort_by_id = Yii::app()->request->getParam("sort_by_id");
         $page = Yii::app()->request->getParam("page");
 
@@ -225,11 +224,6 @@ class ProductController extends Controller
         $where_pack_id = '';
         if($pack_id != null){
             $where_pack_id = ' AND pack_id in ('.implode(',',$pack_id).')';
-        }
-
-        $where_suite_id = '';
-        if($suite_id != null){
-            $where_suite_id = ' AND suite_id in ('.implode(',',$suite_id).')';
         }
 
         $where_price = '';
@@ -288,8 +282,8 @@ class ProductController extends Controller
 
         $condition = $where_menu_id.$where_brand_id.$where_rating.
             $where_color_id.$where_skin_id.$where_smelling_id.
-            $where_material_id.$where_pack_id.$where_suite_id.
-            $where_price.$where_capacity.$where_weight.$order_by;
+            $where_material_id.$where_pack_id.$where_price.
+            $where_capacity.$where_weight.$order_by;
 
         $total_product = $this::productCount($condition);
         $page_number = 1;

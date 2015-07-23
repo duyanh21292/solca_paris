@@ -28,7 +28,7 @@ class MenuController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','menuManagement','menuForm','saveMenu','delMenu'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -170,4 +170,72 @@ class MenuController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    public function actionMenuManagement()
+    {
+        $list_categories = Menu::getAllMenu();
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'parent_id is NOT NULL';
+        $list_all_sub_category = MenuWithParent::model() -> findAll($criteria);
+
+        $this->layout = '//layouts/main';
+        $this->render('menuMng',array(
+            'categories' => $list_categories,
+            'sub_categories' => $list_all_sub_category
+        ));
+    }
+
+    public function actionMenuForm()
+    {
+        $category_id = Yii::app()->request->getParam("id");
+        $category = null;
+        if($category_id != null) {
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'id = :id';
+            $criteria->params = array(':id'=>$category_id);
+            $category = Menu::model() -> find($criteria);
+        }
+
+        $this->layout = '//layouts/main';
+        $this->render('menuForm',array(
+            'category' => $category,
+        ));
+    }
+
+    public function actionSaveMenu()
+    {
+        $id = Yii::app()->request->getParam("id");
+        $name = Yii::app()->request->getParam("name");
+        $desc = Yii::app()->request->getParam("desc");
+        $order = Yii::app()->request->getParam("order");
+
+        $category = new Menu();
+
+        if($id != null && !empty($id)) {
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'id = :id';
+            $criteria->params = array(':id'=>$id);
+            $category = Menu::model() -> find($criteria);
+        }
+
+        $category->name = $name;
+        $category->description = $desc;
+        $category->order = $order;
+        if($category->save()) {
+            $this->redirect('/Menu/menuManagement');
+        } else {
+            echo 'Error!';
+        }
+    }
+
+    public function actionDelMenu()
+    {
+        $id = Yii::app()->request->getParam("id");
+
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'id = :id';
+        $criteria->params = array(':id'=>$id);
+        $category = Menu::model() -> find($criteria);
+        echo $category->delete();
+    }
 }

@@ -101,17 +101,6 @@
             <?php endforeach ?>
         </div>
     </div>
-    <div class="wrapper_filter_item">
-        <div class="filter_type">BỘ SẢN PHẨM</div>
-        <div class="wrapper_checkbox">
-            <?php foreach($suites as $suite): ?>
-                <div class="checkbox_item">
-                    <input class="input_filter" name="suite[]" value="<?php echo $suite->id ?>" type="checkbox" />
-                    <span><?php echo $suite->name ?></span>
-                </div>
-            <?php endforeach ?>
-        </div>
-    </div>
 </form>
 <script type="text/javascript">
     function loadSelectedFilter(){
@@ -130,8 +119,6 @@
         setCheckedCheckbox(selectedArr,'material');
         selectedArr = [<?php if(isset($_GET['pack'])) echo implode(',',$_GET['pack']); ?>];
         setCheckedCheckbox(selectedArr,'pack');
-        selectedArr = [<?php if(isset($_GET['suite'])) echo implode(',',$_GET['suite']); ?>];
-        setCheckedCheckbox(selectedArr,'suite');
     }
 
     function loadSelectedSortBy(){

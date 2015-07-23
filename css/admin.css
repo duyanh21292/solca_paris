@@ -57,6 +57,11 @@ div.admin_list_categories th.list_col_name{
 div.admin_list_categories th.list_col_desc{
     width: 400px;
 }
+
+div.admin_list_categories th.list_col_order{
+    width: 50px;
+}
+
 div.admin_list_categories th.list_col_tools{
     width: 60px;
 }
